@@ -4,9 +4,12 @@ from flask import Flask
 from app.models import db
 from app.views.auth import auth_bp
 from app.views.posts import post_bp
+from datetime import timedelta
 
 def create_app():
     app = Flask(__name__)
+    app.secret_key = "web-app"
+    app.permanent_session_lifetime = timedelta(minutes=5)
     app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:PostgreSQL@localhost:5432/postgres"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
