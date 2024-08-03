@@ -1,6 +1,5 @@
-from flask import Blueprint, request, render_template
+from flask import Blueprint, redirect, url_for, request, render_template, session
 from app.models import Posts, db
-
 post_bp = Blueprint("posts", __name__)
 
 @post_bp.route("/")
@@ -18,8 +17,12 @@ def home_page():
 
 @post_bp.route("/posts", methods = ["GET"])
 def get_posts():
-    post = Posts.query.all()
-    return render_template("home.html", posts= post)
+    if "username" in session:
+        post = Posts.query.all()
+        username = session["username"]
+        return render_template("home.html", posts= post, user = username)
+    else:
+        return redirect(url_for("auth.login"))
 
 @post_bp.route("/posts/<int:id>", methods=["GET"])
 def get_post_by_id(id): 
@@ -28,3 +31,4 @@ def get_post_by_id(id):
             "title" : post.title,
             "description" : post.description,
             "posted_time" : post.time}
+
