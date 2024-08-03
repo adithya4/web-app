@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OUTPUT</title>
+</head>
+<body>
+    
+    <h3>Posts : </h3>
+    {%for post in posts:%}
+        <h3>{{post.id}}</h3>
+        <h2>{{post.title}}</h2>
+        <center><p>{{post.description}}</p></center><br>
+        <h5>{{post.time}}</h5><br>
+        <hr>
+    {%endfor%}
+</body>
+</html>
