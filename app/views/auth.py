@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, session
 from app.models import Users, db
 from app.hash import hash, password_verify
+
 auth_bp = Blueprint("auth", __name__)
 
 @auth_bp.route("/sign-in")
@@ -26,16 +27,31 @@ def verify():
 def login():
     return render_template("login.html")
 
-@auth_bp.route("/login-verify", methods=["POST"])
-def login_ver():
-    username = request.form["username"]
-    password = request.form["password"]
+@auth_bp.route("/login-verify", methods=["POST","GET"])
+def login_verify():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
     
-    no_of_users = db.session.query(Users).all()
-    for user in no_of_users:
-        if username == user.username and password_verify(password, user.password):
-            return redirect(url_for("posts.get_posts"))
+        no_of_users = db.session.query(Users).all()
+        for user in no_of_users:
+            if username == user.username and password_verify(password, user.password):
+                session.permanent = True
+                session["username"] = username
+                return redirect(url_for("posts.get_posts"))
     
+        else:
+            return redirect(url_for("auth.login"))
+
     else:
-        return redirect(url_for("auth.login"))
+        if "username" in session:
+            return redirect(url_for("posts.get_posts"))
+        else:
+            return redirect(url_for("auth.login"))
+        
+@auth_bp.route("/logout")
+def logout():
+    if "username" in session:
+        session.pop("username")
+    return redirect(url_for("auth.login"))
 
