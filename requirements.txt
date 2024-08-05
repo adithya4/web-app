@@ -4,3 +4,4 @@ sqlalchemy
 flask-sqlalchemy
 passlib
 psycopg2-binary
+bcrypt
