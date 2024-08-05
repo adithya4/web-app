@@ -10,7 +10,7 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = "web-app"
     app.permanent_session_lifetime = timedelta(minutes=5)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:PostgreSQL@localhost:5432/postgres"
+    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://obito_ztd3_user:KzD9WL68tCRvW15gMvDkouMsobbwbdEa@dpg-cqogi5rv2p9s73app870-a.oregon-postgres.render.com/obito_ztd3"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
 
