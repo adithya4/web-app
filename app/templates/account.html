@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>account</title>
+</head>
+<body>
+    <form action="/account" method="POST" enctype="multipart/form-data" >
+        <input type="file" name="image" id="image">
+        <input type="submit" name="submit" value="submit">
+    </form>
+    <br><br>
+    <form action="/create-posts" method="get">
+        <input type="submit" value="create post">
+    </form>
+    <br><br>
+    {%if user.image %}
+        <img src="data:image/;base64,{{ user.image.decode('utf-8') }}" style="width: 25px; height:25px; border-radius:50%" >
+    {%endif%}
+        <form action="/logout" method="POST">
+        <button name="logout" value="submit">logout</button>
+    </form>
+
+</body>
+</html>

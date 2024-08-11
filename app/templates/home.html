@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+</head>
+<body>
+    <center><h3>{{user}}</h3></center>
+    <h3>Posts : </h3>
+    {%for post in posts:%}
+        {%if post.author.image%}
+            <img src="data:image/;base64,{{ post.author.image.decode('utf-8') }}" style="height: 25px; width: 25px; border-radius: 25px;">
+        {%endif%}
+        <h4>{{post.author.username}}</h4>
+        <h3>{{post.author.id}}</h3>
+        <h2>{{post.title}}</h2>
+        <center><p>{{post.description}}</p></center><br>
+        <h5>{{post.time}}</h5><br>
+        <hr>
+    {%endfor%}
+</body>
+</html>
