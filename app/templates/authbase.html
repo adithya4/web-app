@@ -4,26 +4,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{%block for_title%}{%endblock%}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
-        .centered-form{
-            display:flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+
+body, html{
+    height: 100%;
+    margin: 0;
+    background-image: url("static/studo_background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.web-app-name{
+    font-family: "Poppins", sans-serif;
+    color: aliceblue;
+}
+.centered-form{
+    width: 400px;
+    height: 350px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    background-color: rgba(33, 33, 33, 0.8); 
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+h2{
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 30px;
+ }
+
+ .centered-form input[type="text"]{
+    
+    width: 150%;
+    height: 17%;
+    padding: 5px;
+    border-radius: 5px;
+    margin-top: 20px;
+    display: block;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    transform: translateX(-15%);
+
+    font-weight: bold;
+
+ }
+ .centered-form input[type="password"]{
+    
+    width: 150%;
+    height: 17%;
+    padding: 5px;
+    margin: 10px 0;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    transform:translateX(-15%) ;
+
+    font-weight: bold;
+
+ }
+
+ .centered-form input[type="submit"]{
+    width: 100px;
+ }
+ 
+
+
     </style>
+    
 </head>
 <body>
-    <h2><center>{%block page_name%}{%endblock%}</center></h2>
+    <h2>{%block page_name%}{%endblock%}</h2>
     <div class="centered-form">
         <form action="{%block for_action%}{%endblock%}" method="post" class="form-container" >
-            <label for="username">Username : </label>
-            <input type="text" name="username" id="username" placeholder="username" required><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password"></input><br>
-            <input type="submit" value="submit">
-            <br><center>{%block for_body%}{%endblock%}</center>
+            <h1 class="web-app-name">STUDO</h1>
+            <input type="text" name="username" id="username" placeholder="username" class="form-control" required><br>
+            
+            <input type="password" name="password" id="password" placeholder="password" class="form-control" required></input><br>
+            <input type="submit" value="submit" class="btn btn-success ">
+            
         </form>
+        
+
+
+    </div>
+    <div>
+        <p style="font-weight: 800;">didn't have an account? {%block for_body%}{%endblock%} </p>
         
     </div>
     <div>
